@@ -31,7 +31,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected function redirectTo(){
-        return Auth::user()->isAdmin() ? '/admin' : '/home';
+        return Auth::user()->isAdmin() ? '/ad' : '/library';
     }
     /**
      * Create a new controller instance.

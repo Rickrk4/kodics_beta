@@ -1,9 +1,8 @@
 <?php return array (
-  'test' => false,
   'require_authentication' => true,
   'registration' => true,
   'allow_user_registration' => false,
-  'jobKey' => 376,
+  'jobKey' => 2,
   'scrapers' => 
   array (
     0 => 'App\\Scrapers\\LocalScraper',

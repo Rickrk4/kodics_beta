@@ -29,11 +29,9 @@ use Symfony\Component\HttpFoundation\Request;
 use wapmorgan\UnifiedArchive\UnifiedArchive;
 
 $scraper = new Chain(config('settings.scrapers'));
-
+/*
 function handle($dir = null){
 
-
-    {
         $files = array_slice(scandir($dir->path),2);
         $directories = [];
         $comics = [];
@@ -61,50 +59,18 @@ function handle($dir = null){
             }
     }
 }
-
-
-    /*
-    if(is_dir($dir->path)){
-        $files = array_slice(scandir($dir->path),2);
-        $directories = [];
-        $comics = [];
-        foreach($files as $file)
-        {
-            $file = $dir->path.'/'.$file;
-
-            if(is_dir($file)){
-
-                if(!($directory = Directory::where('path',$file)->first())){
-                    $dir->directories()->save(($directory = Directory::create(['name' =>  pathinfo($file)['basename'], 'path' => $file])));
-                    handle($directory);
-
-                }else
-                    handle($directory);
-
-            } else {
-                if(!Comic::where('file_path',$file)->exists() && ($comic = (new Chain(config('settings.scrapers')))->call($file))){
-                    $dir->comics()->save($comic);
-                }
-            }
-
-        }
-        return [
-            'directories' => $directories,
-            'comics' => $comics
-        ];
-    }
-    */
-}
-
+*/
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
-if(config('settings.require_authentication'))
+Route::get('/home', 'HomeController@index')->name('home');
+*/
+//if(config('settings.require_authentication'))
     Auth::routes(['register' => config('settings.registration') || !Schema::hasTable('users') || App\User::all()->isEmpty()]);
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('c/restore/{id}', 'ComicController@restore');
 Route::delete('c/destroy/{id}', 'ComicController@forceDelete');
@@ -117,11 +83,13 @@ Route::resource('s', 'SeriesController');
 Route::resource('p', 'PublisherController');
 Route::resource('cl', 'CollectionController');
 Route::get('s/{id}', 'SeriesController@show');
+
+// Angular route
 Route::get('library', function(){
     //return 'ciao';
     View::addExtension('html','php');
     return view('index');
-})->middleware('auth')->name('library');
+})->middleware(config('settings.require_authentication') ? 'auth' : null);
 
 Route::get('ad', function(){
     //return 'ciao';
@@ -140,7 +108,7 @@ Route::get('d/{id}', 'ComicController@directories');
 Route::get('g', 'ComicController@defaultCover');
 Route::get('g/{comicId}','ComicController@cover');
 Route::get('g/{comicId}/{imageId}','ComicController@page');
-
+/*
 Route::get('test', function (Request $request) {
     $series_id = (Series::firstOrCreate(['name' => 'Prova']))->id;
     return $series_id;
@@ -202,11 +170,12 @@ Route::get('test', function (Request $request) {
     }
 
 });
-
+*/
 Route::get('scan', 'AdminController@scan');
 Route::get('scanJob', 'AdminController@scanJob');
 Route::get('scanJob/{id}', 'AdminController@scanJob');
 Route::post('admin/{id}', 'AdminController@store');
+/*
 Route::get('cccc', function () {
     return Session::token();
 });
@@ -220,5 +189,5 @@ Route::any('tokenMatch', function(Request $request){
     error_log(Session::token());
 });
 //Route::post('cl', 'CollectionController@store');
-
+*/
 Route::get('logout','UserController@logout');

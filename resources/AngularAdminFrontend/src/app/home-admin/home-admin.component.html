@@ -9,6 +9,10 @@
     <span>nessuna scansione</span>
 </ng-template>
 <button (click)="this.scan()" [disabled]="this.scanning">Lancia nuova scansione</button>
+<section id="Nuovo utente">
+  <a href="/register"><h2>Registra nuovo utente</h2></a>
+</section>
+
 
 <p>Scan Frequenzy</p>
 <div id="scan-frequency-container" (click)="this.showScanFrequencyes = !this.showScanFrequencyes" [class.no-border-bottom]="this.showScanFrequencyes" class="scan-frequency-container">{{this.scanFrequency.value}}</div>

@@ -27,7 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     protected function redirectTo(){
-        return Auth::user()->isAdmin() ? '/admin' : '/home';
+        return Auth::user()->isAdmin() ? '/ad' : '/home';
     }
 
     public function username()
