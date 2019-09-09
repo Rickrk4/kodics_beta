@@ -1,0 +1,3 @@
+<table>
+  <tr *ngFor="let comic of this.comics.data"><td><app-comic-detail [comic]=comic (refresh)="this.getComics()"></app-comic-detail></td></tr>
+</table>

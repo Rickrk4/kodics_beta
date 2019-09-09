@@ -1,0 +1,18 @@
+
+<p>Scansione</p>
+
+<ng-container *ngIf="this.scanning; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+    <span> {{this.scanJob.output}} </span>
+</ng-template>
+<ng-template #elseTemplate>
+    <span>nessuna scansione</span>
+</ng-template>
+<button (click)="this.scan()" [disabled]="this.scanning">Lancia nuova scansione</button>
+
+<p>Scan Frequenzy</p>
+<div id="scan-frequency-container" (click)="this.showScanFrequencyes = !this.showScanFrequencyes" [class.no-border-bottom]="this.showScanFrequencyes" class="scan-frequency-container">{{this.scanFrequency.value}}</div>
+<div id="scan-frequencies-container" *ngIf="this.showScanFrequencyes">
+  <section *ngFor="let value of this.scanFrequency.values" (click)="this.setScanFrequency(value)">{{value}}</section>
+</div>
+
